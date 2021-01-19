@@ -1,2 +1,11 @@
 # doit-CRM
-Frontend de CRM de doit en React-Redux
+
+doit Frontend CRM powered by React and Redux
+
+# Description
+
+**_DESCRIPTION_**
+
+# Git Workflow
+
+**_Workflow_**
