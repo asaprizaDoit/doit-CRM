@@ -44,12 +44,14 @@ server.use((req, res, next) => {
   next();
 });
 
-server.post("/article/", function (req, res, next) {
-  const error = validateArticle(req.body);
+server.post("/requestLeaves/", (req, res, next) => {
+  const error = validateRequestLeave(req.body);
+
   if (error) {
     res.status(400).send(error);
   } else {
-    req.body.slug = createSlug(req.body.title); // Generate a slug for new courses.
+    req.body.slug = createSlug(req.body.name); // Generate a slug for new courses.
+    console.log(req.body);
     next();
   }
 });
@@ -73,11 +75,14 @@ function createSlug(value) {
     .toLowerCase();
 }
 
-function validateArticle(article) {
-  if (!article.title) return "Title is required";
-  if (!article.photoMain) return "Main photo is required";
-  if (!article.text) return "Text is required";
-  // if (!article.shortArticle.resume) return "Rext is required";
-  // if (!article.shortArticle.subTitle) return "Subtitle is required";
+function validateRequestLeave(requestLeave) {
+  if (!requestLeave.name || requestLeave.name == "a")
+    return "Nombre es requerido";
+  if (!requestLeave.startDate) return "Fecha de inicio es requerido";
+  if (!requestLeave.endDate) return "Fecha fin es requerido";
+  if (requestLeave.startDate > requestLeave.endDate)
+    return "Fecha de inicio debe ser el mismo dia o antes que fecha fin";
+  if (requestLeave.startDate < new Date())
+    return "Fecha de inicio no puede ser una fecha anterior a la fecha de hoy";
   return "";
 }
