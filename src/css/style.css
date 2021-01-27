@@ -9,6 +9,7 @@ html,
 body {
   height: 100%;
   background-color: #e4e4e4;
+  font-size: 16px;
 }
 
 div.container form {
@@ -20,7 +21,7 @@ div.container form {
 
 .invalid {
   color: red;
-  font-size: 12px;
+  font-size: 0.8rem;
 }
 
 .hidden {
